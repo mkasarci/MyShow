@@ -1,7 +1,11 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using MyShow.Core.Extensions;
+using MyShow.Core.Services;
+using MyShow.Core.Services.Interfaces;
 using MyShow.Data;
 using MyShow.Data.Extensions;
+using MyShow.MVC.Policies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +20,13 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Password.RequireDigit = false;
     options.Password.RequiredLength = 6;
 }).AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddHttpClient<ITvShowService, TvShowService>(client =>
+{
+    client.BaseAddress = new Uri("https://api.tvmaze.com/");
+}).AddPolicyHandler(PolicyHandler.WaitAndRetry())
+  .AddPolicyHandler(PolicyHandler.Timeout())
+  .SetHandlerLifetime(TimeSpan.FromMinutes(5));
 
 builder.Services.AddControllersWithViews();
 
