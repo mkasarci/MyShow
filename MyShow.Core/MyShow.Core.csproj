@@ -10,4 +10,9 @@
     <ProjectReference Include="..\MyShow.Data\MyShow.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Actions\Interfaces\" />
+    <Folder Include="QueryServices\Interfaces\" />
+  </ItemGroup>
+
 </Project>
