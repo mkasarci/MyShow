@@ -11,6 +11,6 @@ public static class ServicesExtensions
             .Where(c => c.Name.EndsWith("Repository"))
             .AsPublicImplementedInterfaces(ServiceLifetime.Scoped);
 
-        services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+        services.AddDbContext<AppDbContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
     }
 }

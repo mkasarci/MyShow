@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using MyShow.Data;
 
 namespace MyShow.MVC.Data.Migrations;
-[DbContext(typeof(ApplicationDbContext))]
+[DbContext(typeof(AppDbContext))]
 partial class ApplicationDbContextModelSnapshot : ModelSnapshot
 {
     protected override void BuildModel(ModelBuilder modelBuilder)
