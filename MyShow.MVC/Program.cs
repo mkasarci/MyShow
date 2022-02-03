@@ -21,7 +21,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.Password.RequiredLength = 6;
 }).AddEntityFrameworkStores<AppDbContext>();
 
-builder.Services.AddHttpClient<ITvShowService, TvShowService>(client =>
+builder.Services.AddHttpClient<ITvShowService, MazeTvShowService>(client =>
 {
     client.BaseAddress = new Uri("https://api.tvmaze.com/");
 }).AddPolicyHandler(PolicyHandler.WaitAndRetry())
