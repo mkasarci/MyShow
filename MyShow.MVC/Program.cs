@@ -6,6 +6,8 @@ using MyShow.Data.Services.Interfaces;
 using MyShow.Data;
 using MyShow.Data.Extensions;
 using MyShow.MVC.Policies;
+using System.Net.Http.Headers;
+using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 builder.Services.AddHttpClient<ITvShowService, MazeTvShowService>(client =>
 {
     client.BaseAddress = new Uri("https://api.tvmaze.com/");
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Application.Json));
 }).AddPolicyHandler(PolicyHandler.WaitAndRetry())
   .AddPolicyHandler(PolicyHandler.Timeout())
   .SetHandlerLifetime(TimeSpan.FromMinutes(5));
