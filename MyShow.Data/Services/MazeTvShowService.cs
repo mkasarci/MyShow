@@ -22,7 +22,9 @@ public class MazeTvShowService : ITvShowService
         };
 
         var response = await _httpClient.GetAsync(uriBuilder.Uri);
-        response.EnsureSuccessStatusCode();
+
+        if (response is null) 
+            return null;
 
         var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
