@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using MyShow.Core.Extensions;
-using MyShow.Core.Services;
-using MyShow.Core.Services.Interfaces;
+using MyShow.Data.Services;
+using MyShow.Data.Services.Interfaces;
 using MyShow.Data;
 using MyShow.Data.Extensions;
 using MyShow.MVC.Policies;

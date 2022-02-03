@@ -1,15 +1,15 @@
-﻿using MyShow.Core.Services.Interfaces;
+﻿using MyShow.Data.Services.Interfaces;
 using MyShow.Data.Entities;
 using System.Net.Mime;
 using System.Text;
 
-namespace MyShow.Core.Services;
+namespace MyShow.Data.Services;
 
-public class TvShowService : ITvShowService
+public class MazeTvShowService : ITvShowService
 {
     private readonly HttpClient _httpClient;
 
-    public TvShowService(HttpClient httpClient)
+    public MazeTvShowService(HttpClient httpClient)
     {
         _httpClient = httpClient;
     }
