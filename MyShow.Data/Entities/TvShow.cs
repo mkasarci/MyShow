@@ -6,4 +6,5 @@ public class TvShow
     public string Name { get; set; }
     public string ImageUrl { get; set; }
     public ICollection<Episode> Episodes { get; set; }
+    public int ApiId { get; set; }
 }
