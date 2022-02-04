@@ -7,5 +7,4 @@ public class Episode
     public int Season { get; set; }
     public int Number { get; set; }
     public DateTime AirDate { get; set; }
-    public TvShow TvShow { get; set; }
 }
