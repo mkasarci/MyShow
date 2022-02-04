@@ -2,5 +2,5 @@
 
 public class MazeEmbedded
 {
-    public MazeNextEpisode NextEpisode { get; set; }
+    public MazeEpisode NextEpisode { get; set; }
 }

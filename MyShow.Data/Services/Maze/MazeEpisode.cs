@@ -2,7 +2,7 @@
 
 namespace MyShow.Data.Services.Maze;
 
-public class MazeNextEpisode
+public class MazeEpisode
 {
     public int Id { get; set; }
     public string Name { get; set; }
