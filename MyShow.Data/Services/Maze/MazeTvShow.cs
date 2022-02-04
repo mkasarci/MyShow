@@ -4,7 +4,9 @@ namespace MyShow.Data.Services.Maze;
 
 public class MazeTvShow
 {
-    public int Id { get; set; }
+    [JsonPropertyName("id")]
+    public int ApiId { get; set; }
+
     public string Name { get; set; }
     public string Status { get; set; }
     public MazeImage Image { get; set; }
