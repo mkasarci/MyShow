@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace MyShow.Data.Entities;
 
-namespace MyShow.Data.Entities;
-
-internal class UserTvShow
+public class UserTvShow
 {
+    public int UserId { get; set; }
+    public int TvShowId { get; set; }
+    public TvShow TvShow { get; set; }
 }
