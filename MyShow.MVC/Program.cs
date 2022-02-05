@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using MyShow.Core.Extensions;
-using MyShow.Data.Services;
 using MyShow.Data.Services.Interfaces;
 using MyShow.Data;
 using MyShow.Data.Extensions;
 using MyShow.MVC.Policies;
 using System.Net.Http.Headers;
 using static System.Net.Mime.MediaTypeNames;
+using MyShow.Data.Services.Maze;
 
 var builder = WebApplication.CreateBuilder(args);
 

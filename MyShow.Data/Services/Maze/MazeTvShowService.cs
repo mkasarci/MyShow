@@ -1,6 +1,6 @@
 ﻿using MyShow.Data.Services.Interfaces;
 
-namespace MyShow.Data.Services;
+namespace MyShow.Data.Services.Maze;
 
 public class MazeTvShowService : ITvShowService
 {
@@ -23,7 +23,7 @@ public class MazeTvShowService : ITvShowService
 
         var response = await _httpClient.GetAsync(uriBuilder.Uri);
 
-        if (response is null) 
+        if (response is null)
             return null;
 
         var responseBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
