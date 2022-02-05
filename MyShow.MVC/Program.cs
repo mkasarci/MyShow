@@ -8,6 +8,7 @@ using MyShow.MVC.Policies;
 using System.Net.Http.Headers;
 using static System.Net.Mime.MediaTypeNames;
 using MyShow.Data.Services.Maze;
+using MyShow.Data.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,7 @@ builder.Services.AddCoreServices();
 builder.Services.AddDataServices(builder.Configuration);
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+builder.Services.AddDefaultIdentity<User>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequireNonAlphanumeric = false;
