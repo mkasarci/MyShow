@@ -24,6 +24,8 @@ builder.Services.AddDefaultIdentity<User>(options =>
     options.Password.RequiredLength = 6;
 }).AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.AddAutoMapper(typeof(MazeProfile));
+
 builder.Services.AddHttpClient<ITvShowService, MazeTvShowService>(client =>
 {
     client.BaseAddress = new Uri("https://api.tvmaze.com/");
