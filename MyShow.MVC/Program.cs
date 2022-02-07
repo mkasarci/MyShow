@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using MyShow.Core.Extensions;
 using MyShow.Data.Services.Interfaces;
 using MyShow.Data;
 using MyShow.Data.Extensions;
@@ -9,10 +8,10 @@ using System.Net.Http.Headers;
 using static System.Net.Mime.MediaTypeNames;
 using MyShow.Data.Services.Maze;
 using MyShow.Data.Entities;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCoreServices();
 builder.Services.AddDataServices(builder.Configuration);
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -33,6 +32,8 @@ builder.Services.AddHttpClient<ITvShowService, MazeTvShowService>(client =>
   .SetHandlerLifetime(TimeSpan.FromMinutes(5));
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddAutoMapper(typeof(MazeProfile).Assembly, Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 

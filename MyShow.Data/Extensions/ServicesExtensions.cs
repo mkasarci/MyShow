@@ -8,7 +8,7 @@ public static class ServicesExtensions
     public static void AddDataServices(this IServiceCollection services, IConfiguration config)
     {
         services.RegisterAssemblyPublicNonGenericClasses()
-            .Where(c => c.Name.EndsWith("Repository"))
+            .Where(c => c.Name.EndsWith("Repository") || c.Name.EndsWith("Action") || c.Name.EndsWith("Queries"))
             .AsPublicImplementedInterfaces(ServiceLifetime.Scoped);
 
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
