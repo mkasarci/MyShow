@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MyShow.Core\MyShow.Core.csproj" />
     <ProjectReference Include="..\MyShow.Data\MyShow.Data.csproj" />
+    <ProjectReference Include="..\MyShow.Shared\MyShow.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
