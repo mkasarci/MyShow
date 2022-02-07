@@ -24,7 +24,6 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpGet("{title}")]
     public IActionResult SearchTvShow(string title)
     {
         // TODO: Call Search Tv Show action

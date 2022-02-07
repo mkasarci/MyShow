@@ -3,75 +3,7 @@
 }
 
 <div class="container">
+    <partial name="_SearchPartial"/>
 
-    <div class="row justify-content-center">
-        <div id="not-found" style="display:none;" role="alert" class="col-lg-4 text-center alert col-8 alert-warning alert-dismissible">
-            Try searching again
-        </div>
-    </div>
 
-    <div class="row justify-content-center">
-
-        <form method="get" name="search-form" class="col-lg-6 d-flex">
-            <label for="search-input" class="m-2">Title</label>
-            <input id="search-input" type="text" required minlength="2" class="form-control" />
-            <button type="submit" class="btn btn-success">Search</button>
-        </form>
-    </div>
-
-    <div id="search-tvshow-card" style="display:none" class="card bg-dark text-light mt-3 offset-lg-3 col-lg-6">
-        <div class="text-center">
-            <img id="search-tvshow-image" class="card-img-top" src="" alt="">
-
-            <div class="card-body">
-                <h5 id="search-tvshow-title" class="card-title"></h5>
-                <a class="btn btn-lg btn-outline-info">Track</a>
-            </div>
-        </div>
-    </div>
 </div>
-
-<style>
-    #search-tvshow-image {
-        width: 60%;
-    }
-</style>
-
-@section Scripts{ @* gets rendered after body*@
-    <script>
-        const searchFormId = 'search-form';
-
-        const notFoundAlert = document.getElementById('not-found');
-
-        const card = document.getElementById('search-tvshow-card');
-        const imageElement = document.getElementById('search-tvshow-image');
-        const titleElement = document.getElementById('search-tvshow-title');
-
-        document.forms[searchFormId].addEventListener('submit', e => {
-            e.preventDefault(); // dont want to refresh page
-            const searchForm = document.forms[searchFormId];
-            const input = searchForm['search-input'].value;
-
-            OnSearch(input);
-        });
-
-        async function OnSearch(title) {
-            var response = await fetch(`${title}`); // call search action method
-
-            if (response.status == 204) { // successfull search but no tv show
-                notFoundAlert.style.display = 'block';
-                setTimeout(() => notFoundAlert.style.display = 'none', 5000);
-                return;
-            }
-
-            var tvshow = await response.json();
-
-            card.style.display = 'block';
-            card.classList.add('d-flex');
-            imageElement.setAttribute('src', tvshow.imageUri);
-            imageElement.setAttribute('alt', tvshow.name);
-            titleElement.innerText = tvshow.name;
-        }
-
-    </script>
-}
