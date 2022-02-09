@@ -1,39 +1,17 @@
-using Microsoft.EntityFrameworkCore;
-using MyShow.Data;
-using MyShow.Data.Entities;
-using MyShow.Data.Extensions;
-using MyShow.Data.Services.Interfaces;
+using MyShow.Core.Extensions;
 using MyShow.Data.Services.Maze;
-using MyShow.MVC.Policies;
-using System.Net.Http.Headers;
+using MyShow.MVC.Extensions;
 using System.Reflection;
-using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDataServices(builder.Configuration);
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<User>(options =>
-{
-    options.SignIn.RequireConfirmedAccount = false;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireDigit = false;
-    options.Password.RequiredLength = 6;
-}).AddEntityFrameworkStores<AppDbContext>();
-
-builder.Services.AddHttpClient<ITvShowService, MazeTvShowService>(client =>
-{
-    client.BaseAddress = new Uri("https://api.tvmaze.com/");
-    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Application.Json));
-}).AddPolicyHandler(PolicyHandler.WaitAndRetry())
-  .AddPolicyHandler(PolicyHandler.Timeout())
-  .SetHandlerLifetime(TimeSpan.FromMinutes(5));
-
-builder.Services.AddControllersWithViews();
-
+builder.Services.AddCoreServices(builder.Configuration);
+builder.Services.AddIdentity();
+builder.Services.AddHttpClients();
 builder.Services.AddAutoMapper(typeof(MazeProfile).Assembly, Assembly.GetExecutingAssembly());
+
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
